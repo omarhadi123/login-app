@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import "./App.css";
 import Loading from "./pages/Loading";
+import {Button} from "@chakra-ui/react";
+import {NavLink} from "react-router";
 
 interface Data {
     name: string;
@@ -40,6 +42,11 @@ function App() {
                     </ul>
                 )}
             </div>
+            <NavLink to="/check">
+                <Button colorScheme="teal" size="md" mt={4}>
+                    Go to Check Page
+                </Button>
+            </NavLink>
             <Loading />
         </>
     );

@@ -5,10 +5,15 @@ import App from "./App.tsx";
 import {Provider} from "./components/ui/provider.tsx";
 import {createBrowserRouter, RouterProvider} from "react-router";
 
+import CheckPage from "./pages/CheckPage.tsx";
 const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
+    },
+    {
+        path: "/check",
+        element: <CheckPage />,
     },
 ]);
 createRoot(document.getElementById("root")!).render(
