@@ -1,53 +1,32 @@
-import {useEffect, useState} from "react";
+import {Container, ClientOnly, Skeleton, IconButton} from "@chakra-ui/react";
 import "./App.css";
-import Loading from "./pages/Loading";
-import {Button} from "@chakra-ui/react";
-import {NavLink} from "react-router";
+import Form from "@features/form/components/Form";
+import {useColorMode} from "./components/ui/color-mode";
+import {LuMoon, LuSun} from "react-icons/lu";
 
-interface Data {
-    name: string;
-    age: number;
-    city: string;
-}
 function App() {
-    const [data, setData] = useState<Data[]>([]);
-    const [error, setError] = useState<string | null>(null);
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await fetch("data/data.json");
-                const data = await res.json();
-                setData(data);
-            } catch (err) {
-                const errorMsg =
-                    err instanceof Error ? err.message : String(err);
-                setError(errorMsg);
-            }
-        };
-        fetchData();
-    }, []);
-
+    const {toggleColorMode, colorMode} = useColorMode();
     return (
         <>
-            <div>
-                {error && <div>Error: {String(error)}</div>}
-                {data.length > 0 && (
-                    <ul>
-                        {data.map((item, index) => (
-                            <li key={index}>
-                                {item.name}, {item.age} years old, from{" "}
-                                {item.city}
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </div>
-            <NavLink to="/check">
-                <Button colorScheme="teal" size="md" mt={4}>
-                    Go to Check Page
-                </Button>
-            </NavLink>
-            <Loading />
+            <Container
+                css={{
+                    "--primary-color": "colors.gray.emphasized",
+                    "--primary-text-dark-color": "colors.purple.200",
+                    "--primary-text-light-color": "colors.purple.950",
+                }}
+                width={"full"}
+                height={"dvh"}
+                background={"var(--primary-color)"}>
+                <ClientOnly fallback={<Skeleton boxSize="8" />}>
+                    <IconButton
+                        onClick={toggleColorMode}
+                        variant="outline"
+                        size="sm">
+                        {colorMode === "light" ? <LuSun /> : <LuMoon />}
+                    </IconButton>
+                </ClientOnly>
+                <Form />
+            </Container>
         </>
     );
 }

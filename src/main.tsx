@@ -4,8 +4,9 @@ import "./index.css";
 import App from "./App.tsx";
 import {Provider} from "./components/ui/provider.tsx";
 import {createBrowserRouter, RouterProvider} from "react-router";
-
 import CheckPage from "./pages/CheckPage.tsx";
+import {ContextProvider} from "@store/contextProvider.tsx";
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -16,10 +17,13 @@ const router = createBrowserRouter([
         element: <CheckPage />,
     },
 ]);
+
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
         <Provider>
-            <RouterProvider router={router} />
+            <ContextProvider>
+                <RouterProvider router={router} />
+            </ContextProvider>
         </Provider>
     </StrictMode>
 );

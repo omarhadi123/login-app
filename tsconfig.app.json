@@ -9,7 +9,14 @@
         "skipLibCheck": true,
         "baseUrl": "./src",
         "paths": {
-            "@*/": ["*"]
+            "@/*": ["*"],
+            "@utils/*": ["utils/*"],
+            "@pages/*": ["pages/*"],
+            "@features/*": ["features/*"],
+            "@components/*": ["components/*"],
+            "@types/*": ["types/*"],
+            "@store/*": ["store/*"],
+            "@hooks/*": ["hooks/*"]
         },
 
         /* Bundler mode */
