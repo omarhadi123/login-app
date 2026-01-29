@@ -1,31 +1,19 @@
-import {Container, ClientOnly, Skeleton, IconButton} from "@chakra-ui/react";
+import {Container} from "@chakra-ui/react";
 import "./App.css";
-import Form from "@features/form/components/Form";
-import {useColorMode} from "./components/ui/color-mode";
-import {LuMoon, LuSun} from "react-icons/lu";
+import {Outlet} from "react-router";
+import {ColorModeButton} from "./components/ui/color-mode";
 
 function App() {
-    const {toggleColorMode, colorMode} = useColorMode();
     return (
         <>
             <Container
-                css={{
-                    "--primary-color": "colors.gray.emphasized",
-                    "--primary-text-dark-color": "colors.purple.200",
-                    "--primary-text-light-color": "colors.purple.950",
-                }}
-                width={"full"}
-                height={"dvh"}
-                background={"var(--primary-color)"}>
-                <ClientOnly fallback={<Skeleton boxSize="8" />}>
-                    <IconButton
-                        onClick={toggleColorMode}
-                        variant="outline"
-                        size="sm">
-                        {colorMode === "light" ? <LuSun /> : <LuMoon />}
-                    </IconButton>
-                </ClientOnly>
-                <Form />
+                h={"dvh"}
+                bgColor={{_dark: "brand.100", base: "#ffffff"}}
+                px={["2", "4", "8", "16"]}
+                display={"grid"}
+                placeItems={"center"}>
+                <ColorModeButton position={"absolute"} right={"10"} top={"5"} />
+                <Outlet />
             </Container>
         </>
     );

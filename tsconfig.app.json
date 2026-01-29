@@ -12,7 +12,6 @@
             "@/*": ["*"],
             "@utils/*": ["utils/*"],
             "@pages/*": ["pages/*"],
-            "@features/*": ["features/*"],
             "@components/*": ["components/*"],
             "@types/*": ["types/*"],
             "@store/*": ["store/*"],
